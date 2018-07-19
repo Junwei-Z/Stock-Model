@@ -1,0 +1,4 @@
+quit_price<-function(open_price,k){
+  l=open_price-k*r
+  return(l)
+}
