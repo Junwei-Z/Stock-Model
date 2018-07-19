@@ -1,0 +1,32 @@
+yan.signal<-function(cdata,pdata){
+  p=0
+  r0<-NULL
+  r1<-NULL
+  rn<-NULL
+  for(i in 1:nrow(pdata)) {
+    if(pdata$Series[i]=='down') {
+      if( p==0) {
+        r0<-c(r0,"B")
+        r1<-c(r1,pdata$Value[i])
+        rn<-c(rn,as.Date(index(cdata[i])))
+      }
+      p<-1
+    } 
+    if(pdata$Series[i]=='up'){
+      if( p==1) {
+        r0<-c(r0,"S")
+        r1<-c(r1,pdata$Value[i])
+        rn<-c(rn,as.Date(index(cdata[i])))
+      }
+      p<-0
+    }
+  }
+  res<-data.frame(Value=r1,op=r0)
+  rownames(res)<-as.Date(rn)
+  return(res)
+}
+
+tdata<-yan.signal(cdata,pdata)
+tdata<-tdata[which(as.Date(row.names(tdata))<eDate),]
+head(tdata)
+nrow(tdata)
