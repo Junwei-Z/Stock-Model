@@ -1,0 +1,9 @@
+sellstop<-function(p,x){
+  m<-as.vector(max(sss.data[,4]))*(1-x)
+  if(p<m){
+    print('Sell')
+  }
+  else{
+    print('Hold')
+  }
+}
