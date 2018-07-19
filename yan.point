@@ -1,0 +1,11 @@
+yan.point<-function(ldata,titie,sDate,eDate){
+  pdata<-data.frame(Index=as.Date(array(index(ldata))),Series=array(ifelse(ldata$ma20<ldata$ma5,"up","down")),Value=array(ldata$ma20))
+  g<-ggplot(aes(x=Index, y=Value),data=fortify(ldata[,1],melt=TRUE))
+  g<-g+geom_line()
+  #g<-g+geom_line(aes(colour=Series),data=fortify(ldata[,-1],melt=TRUE))
+  g<-g+geom_point(aes(x=Index,y=Value,colour=Series),data=fortify(pdata,melt=TRUE))
+  g<-g+scale_x_date(labels=date_format("%Y-%m"),breaks=date_breaks("2 months"),limits = c(sDate,eDate))
+  g<-g+xlab("") + ylab("Price")+ggtitle(title)
+  g
+  return(list(pdata,g))
+}
