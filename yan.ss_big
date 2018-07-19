@@ -1,0 +1,9 @@
+ss_big<-function(x){
+  r=big.low/big.high
+  if(r<0.96){
+    print("Stop Trading for 20 Days")
+  }
+  else{
+    print("Good in General")
+  }
+}
