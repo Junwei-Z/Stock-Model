@@ -1,0 +1,4 @@
+enter_price<-function(open_price,k){
+  h=open_price+k*r
+  return(h)
+}
