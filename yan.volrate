@@ -1,0 +1,11 @@
+# function: the rate of vol at t divided by vol at t-1
+volrate<-function(x){ # x is volumn column
+  t=1
+  l=vector()
+  for (i in 2:length(x)){
+    r<-x[i]/x[i-1]
+    l[t]=r
+    t<-t+1
+  }
+  return(l)
+}
