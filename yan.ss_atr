@@ -1,0 +1,10 @@
+ss_atr<-function(close_price){
+  highest<-as.vector(max(sss.data[,4]))
+  diff<-highest-3*atr
+  if(close_price<diff){
+    print("Sell")
+  }
+  else{
+    print('Hold')
+  }
+}
